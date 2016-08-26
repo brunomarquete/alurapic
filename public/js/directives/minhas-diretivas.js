@@ -43,7 +43,7 @@ angular.module("minhasDiretivas", [])
     }).directive("foco", function () {
 
         var ddo = {
-            restrict: "A",
+            restrict: "A"
         };
 
         ddo.link = function (scope, element) {
@@ -57,6 +57,25 @@ angular.module("minhasDiretivas", [])
             });
 
         }
+
+        return ddo;
+
+    }).directive("meusTitulos", function () {
+
+        var ddo = {
+            resctrict: "E",
+            template: '<ul><li ng-repeat="titulo in titulos">{{titulo}}</li></ul>'
+        }
+
+        ddo.controller = function ($scope, recursoFoto) {
+         
+            recursoFoto.query(function (fotos) {
+                $scope.titulos = fotos.map(function (foto) {
+                    return foto.titulo;
+                });
+            });
+
+        };
 
         return ddo;
 
